@@ -11,12 +11,12 @@ interface Props {
 const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
-  if (error) return;
+  if (error) return null;
   return (
     <div>
       <Menu>
         <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-          {selectedPlatform ? selectedPlatform?.name : "Platform"}
+          {selectedPlatform?.name || "Platforms"}
         </MenuButton>
         <MenuList>
           {data.map((platform) => (

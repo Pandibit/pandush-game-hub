@@ -1,4 +1,3 @@
-import React from "react";
 import { Genre } from "../hooks/useGenres";
 import useData from "../hooks/useData";
 import {
@@ -8,9 +7,14 @@ import {
   ListItem,
   Spinner,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url";
-import { Props } from "./GenreList";
+
+interface Props {
+  onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
+}
 
 export const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data, loading, error } = useData<Genre>("/genres");
