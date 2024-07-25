@@ -1,5 +1,5 @@
 import React from "react";
-import useGenres, { Genre } from "../hooks/useGenres";
+import { Genre } from "../hooks/useGenres";
 import useData from "../hooks/useData";
 import {
   HStack,
@@ -8,16 +8,11 @@ import {
   ListItem,
   Spinner,
   Button,
-  Heading,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url";
+import { Props } from "./GenreList";
 
-interface Props {
-  onSelectedGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
-}
-
-const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
+export const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data, loading, error } = useData<Genre>("/genres");
 
   {
@@ -26,8 +21,8 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   if (loading) return <Spinner></Spinner>;
   return (
     <>
-      <Heading fontSize="2xl" marginBottom={2}>Genres</Heading>
-      <List paddingY={2}>
+      <Heading></Heading>
+      <List>
         {data.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
@@ -40,9 +35,9 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
               <Button
                 onClick={() => onSelectedGenre(genre)}
                 variant="link"
-                fontSize="lg"
                 whiteSpace="normal"
                 textAlign="left"
+                fontSize="lg"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               >
                 {genre.name}
@@ -54,5 +49,3 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
     </>
   );
 };
-
-export default GenreList;
