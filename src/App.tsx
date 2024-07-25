@@ -26,6 +26,7 @@ const App = () => {
       <Show above="lg">
         <GridItem area="aside" paddingX="5px">
           <GenreList
+            selectedGenre={selectedGenre}
             onSelectedGenre={(genre) => {
               setSelectedGenre(genre);
               console.log(genre.name);
