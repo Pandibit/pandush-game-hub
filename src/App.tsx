@@ -41,16 +41,13 @@ const App = () => {
       </Show>
       <GridItem area="main">
         <PlatformSelector
-          selectedPlatform={selectedPlatform}
+        selectedPlatform={selectedPlatform}
           onSelectPlatform={(platform) => {
             setSelectedPlatform(platform);
             console.log(platform.name);
           }}
         ></PlatformSelector>
-        <GameGrid
-          selectedPlatform={selectedPlatform}
-          selectedGenre={selectedGenre}
-        ></GameGrid>
+        <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}></GameGrid>
       </GridItem>
     </Grid>
   );
